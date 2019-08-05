@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//유효성 검사
+	function doSubmit() {
+		var frm=document.form1;
+		
+		if(!frm.user_name.value){
+			alert("이름을 입력해 주세요.");
+			frm.user_name.focus();
+			return false;
+		}
+		
+		if(!frm.gender[0].checked&&!frm.gender[1].checked){
+			alert("성별을 선택해 주세요.");
+			frm.gender[0].focus();
+			return false;
+		}
+		
+		if(frm.job.selectedIndex < 1){
+			alert("직업을 선택해 주세요.");
+		}
+		
+		var chk=false;
+		for(var i=0;i<frm.hobby.length;i++){
+			if(frm.hobby[i].checked){
+				chk=true;
+				break;
+			}
+		}
+		
+		if(!chk){
+			alert("취미를 선택해 주세요.");
+			frm.hobby[i].focus();
+			return false;
+		}
+		
+		if(confirm("입력하신 내용이 맞습니까?")){
+			frm.submit();
+		}
+	}
+	
+	
+</script>
+</head>
+<body>
+	<form name="form1" >
+		<fieldset>
+			<legend>회원 가입</legend>
+			<label>이름</label>&nbsp;<input type="text" name="user_name"/><br />
+			<hr>
+			성별&nbsp;<input type="radio" name="gender" value="male">남자
+			 <input type="radio" name="gender" value="female">여자<br />
+			 <hr>
+			<label>직업 </label>&nbsp;
+			<select name="job" >
+				<option value="initial">선택해주세요</option>
+				<option value="sales">영업</option>
+				<option value="account">회계</option>
+			</select><br />
+			<hr>
+			<label>취미</label>&nbsp;
+			<input type="checkbox" name="hobby" value="soccer">축구
+			<input type="checkbox" name="hobby" value="basketball">농구
+			<input type="checkbox" name="hobby" value="baseball">야구<br />
+			<hr>
+			<input type="button" value="제출" onclick="doSubmit(); "> <input type="reset" value="리셋"> 
+		</fieldset>
+	
+	</form>
+	
+</body>
+</html>
